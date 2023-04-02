@@ -1,6 +1,6 @@
 package com.example.techsavvy.service;
 
-import com.qtvsmart.qtvsmartServer.entity.Employee;
+import com.example.techsavvy.entity.Employee;
 
 import java.util.List;
 

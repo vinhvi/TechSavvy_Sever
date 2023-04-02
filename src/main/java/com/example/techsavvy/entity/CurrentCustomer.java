@@ -20,5 +20,4 @@ public class CurrentCustomer extends Person {
     @OneToMany(mappedBy = "currentCustomer", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Order> orders = new ArrayList<>();
 
-
 }

@@ -1,7 +1,8 @@
 package com.example.techsavvy.service;
 
-import com.qtvsmart.qtvsmartServer.entity.Product;
-import com.qtvsmart.qtvsmartServer.entity.Type;
+
+import com.example.techsavvy.entity.Product;
+import com.example.techsavvy.entity.Type;
 
 import java.util.List;
 

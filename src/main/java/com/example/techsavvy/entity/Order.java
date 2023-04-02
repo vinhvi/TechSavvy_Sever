@@ -50,4 +50,8 @@ public class Order {
     @JoinColumn(name = "employee_id")
     private Employee employee;
 
+    @ManyToOne
+    @JoinColumn(name = "current_customer_id")
+    private CurrentCustomer currentCustomer;
+
 }

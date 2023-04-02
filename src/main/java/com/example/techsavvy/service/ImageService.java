@@ -1,6 +1,7 @@
 package com.example.techsavvy.service;
 
-import com.qtvsmart.qtvsmartServer.entity.Image;
+
+import com.example.techsavvy.entity.Image;
 
 public interface ImageService {
     Image addImage(Image image);

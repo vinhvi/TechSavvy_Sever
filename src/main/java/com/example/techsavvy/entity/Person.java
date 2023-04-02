@@ -25,5 +25,7 @@ public abstract class Person {
     private int sex;
     @Column(nullable = false, unique = true)
     private String phone;
+    @Column(nullable = false, unique = true)
+    private String password;
 
 }
