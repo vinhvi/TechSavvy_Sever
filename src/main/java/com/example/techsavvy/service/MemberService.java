@@ -6,7 +6,7 @@ import com.example.techsavvy.entity.Member;
 import java.util.List;
 
 public interface MemberService {
-    int addCustomer(Member member, String password);
+    Member addCustomer(Member member);
 
     Member getCustomerById(int id);
 

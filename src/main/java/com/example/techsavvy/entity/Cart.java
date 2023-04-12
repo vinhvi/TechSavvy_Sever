@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "carts")
+@Table(name = "tb_carts")
 @Data
 @Getter
 @Setter
@@ -28,8 +28,5 @@ public class Cart {
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CartItems> cartItems = new ArrayList<>();
 
-    @ManyToOne
-    @JoinColumn(name = "employee_id")
-    private Employee employee;
 
 }

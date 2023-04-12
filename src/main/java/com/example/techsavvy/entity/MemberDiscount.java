@@ -6,7 +6,7 @@ import lombok.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "member_discount")
+@Table(name = "tb_member_discount")
 @Data
 @Getter
 @Setter
@@ -15,7 +15,7 @@ import java.util.Date;
 public class MemberDiscount {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
 
     private String name;
 

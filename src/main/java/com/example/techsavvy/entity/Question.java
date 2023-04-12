@@ -6,7 +6,7 @@ import lombok.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "question")
+@Table(name = "tb_question")
 @Data
 @Getter
 @Setter
@@ -16,7 +16,7 @@ public class Question {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
 
     private String content;
 
@@ -25,10 +25,6 @@ public class Question {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "product_id")
     private Product product;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "employee_id")
-    private Employee employee;
 
     @ManyToOne
     @JoinColumn(name = "member_id")

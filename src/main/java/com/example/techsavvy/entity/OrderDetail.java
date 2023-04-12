@@ -3,7 +3,7 @@ package com.example.techsavvy.entity;
 import jakarta.persistence.*;
 import lombok.*;
 @Entity
-@Table(name = "orderDetail")
+@Table(name = "tb_orderDetail")
 @Data
 @Getter
 @Setter

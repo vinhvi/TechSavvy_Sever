@@ -3,10 +3,8 @@ package com.example.techsavvy.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
-
 @Entity
-@Table(name = "supplier")
+@Table(name = "tb_supplier")
 @Data
 @Getter
 @Setter
@@ -18,13 +16,10 @@ public class Supplier {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @OneToMany(mappedBy = "supplier")
-    private List<ImportOrder> importOrders;
-
     private String name;
     private String email;
     private String phone;
     private String address;
-    private boolean hienThi;
+    private boolean status;
 
 }

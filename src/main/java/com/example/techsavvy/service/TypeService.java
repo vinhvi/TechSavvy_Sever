@@ -9,9 +9,13 @@ public interface TypeService {
 
     Type getTypeById(int id);
 
-    void saveType(Type type);
+    Type getByName(String name);
+
+    Type saveType(Type type);
 
     void deleteType(int id);
 
-    Type getOneType(Type type);
+    Type getOneType(int id);
+
+    Type formatType(Type type);
 }

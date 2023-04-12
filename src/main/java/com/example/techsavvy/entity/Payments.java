@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "payments")
+@Table(name = "tb_payments")
 @Data
 @Getter
 @Setter
@@ -16,11 +16,8 @@ public class Payments {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String moTa;
-    private boolean hienThi;
+    private String content;
+    private boolean status;
 
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "order_id")
-    private Order order;
 
 }

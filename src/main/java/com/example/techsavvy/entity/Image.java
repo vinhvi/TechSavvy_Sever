@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "images")
+@Table(name = "tb_images")
 @Data
 @Getter
 @Setter
@@ -18,14 +18,10 @@ public class Image {
     @Column(name = "url")
     private String url;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_id")
-    private Product product;
-
     private boolean hienThi;
 
-    @ManyToOne
-    @JoinColumn(name = "evaluate_id")
-    private Evaluate evaluate;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "product_id")
+    private Product product;
 
 }

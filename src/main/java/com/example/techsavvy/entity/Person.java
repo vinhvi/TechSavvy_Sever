@@ -16,11 +16,13 @@ public abstract class Person {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(nullable = false, unique = true)
-    private String name;
+    private String firstName;
+    @Column(nullable = false,unique = true)
+    private String lastName;
     @Column(nullable = false, unique = true)
     private String email;
     @Column(nullable = false, unique = true)
-    private Date ngaySinh;
+    private Date dateOfBirth;
     @Column(nullable = false, unique = true)
     private int sex;
     @Column(nullable = false, unique = true)

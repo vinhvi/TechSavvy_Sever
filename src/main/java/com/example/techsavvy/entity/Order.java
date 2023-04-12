@@ -3,12 +3,10 @@ package com.example.techsavvy.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @Entity
-@Table(name = "orders")
+@Table(name = "tb_orders")
 @Data
 @Getter
 @Setter
@@ -18,25 +16,6 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
-    @ManyToOne
-    @JoinColumn(name = "customers_id")
-    private Member member;
-    @OneToMany(mappedBy = "order")
-    private List<OrderDetail> orderDetails = new ArrayList<>();
-
-
-    private Date ngayDat;
-
-    private String diaChiGiaoHang;
-
-    private Date ngayGiao;
-
-    private String notes;
-
-    private boolean statusPayment;
-
-    private boolean statusGH;
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "payments_id")
@@ -49,6 +28,22 @@ public class Order {
     @ManyToOne
     @JoinColumn(name = "employee_id")
     private Employee employee;
+    private Date bookingDate;
+
+    private String address;
+
+    private Date deliveryDate;
+
+    private String notes;
+
+    private boolean statusPayment;
+
+    private boolean statusDelivery;
+
+
+    @ManyToOne
+    @JoinColumn(name = "member_id")
+    private Member member;
 
     @ManyToOne
     @JoinColumn(name = "current_customer_id")

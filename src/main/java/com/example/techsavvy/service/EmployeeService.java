@@ -5,9 +5,11 @@ import com.example.techsavvy.entity.Employee;
 import java.util.List;
 
 public interface EmployeeService {
-    String createEmployee(Employee employee,String password);
+    Employee createEmployee(Employee employee);
     Employee getOneEmployee(Employee employee);
     Employee getById(int id);
 
     List<Employee> getAll();
+
+    void addRoleToEmployee(String email,String roleName);
 }

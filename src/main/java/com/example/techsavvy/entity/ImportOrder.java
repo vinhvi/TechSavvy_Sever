@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "importOrder")
+@Table(name = "tb_importOrder")
 @Data
 @Getter
 @Setter
@@ -17,9 +17,6 @@ public class ImportOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
-    @OneToMany(mappedBy = "importOrder", cascade = CascadeType.ALL)
-    private List<ImportOrderDetail> importOrderDetails;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "supplier_id")

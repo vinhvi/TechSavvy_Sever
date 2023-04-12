@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "specifications")
+@Table(name = "tb_specification")
 @Data
 @Getter
 @Setter
@@ -18,9 +18,10 @@ public class Specification {
 
     private String name;
 
-    private String specification;
+    private String describes;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
+
 }

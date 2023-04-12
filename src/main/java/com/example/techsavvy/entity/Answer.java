@@ -6,7 +6,7 @@ import lombok.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "answer")
+@Table(name = "tb_answer")
 @Data
 @Getter
 @Setter
@@ -16,7 +16,7 @@ public class Answer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
 
     private String content;
     private Date replyDate;

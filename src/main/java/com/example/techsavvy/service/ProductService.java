@@ -1,9 +1,10 @@
 package com.example.techsavvy.service;
 
 
+import com.example.techsavvy.entity.Image;
 import com.example.techsavvy.entity.Product;
+import com.example.techsavvy.entity.Specification;
 import com.example.techsavvy.entity.Type;
-
 import java.util.List;
 
 public interface ProductService {
@@ -11,21 +12,19 @@ public interface ProductService {
 
     Product getProductById(int id);
 
-    void saveProduct(Product product);
+    Product saveProduct(Product product);
 
     void deleteProduct(int id);
 
-    List<Product> getProductsByType(Type type);
-
-
-    List<Product> getBestSellingProducts();
-
-    List<Product> getPopularProducts();
-
-    List<Product> getLatestProducts();
+    Type getProductsByType(int idType);
 
     Product getOneProduct(Product product);
 
+
+    Product formatProduct(Product product);
+
     List<Product> getListProduct(List<Product> productList);
+
+
 
 }

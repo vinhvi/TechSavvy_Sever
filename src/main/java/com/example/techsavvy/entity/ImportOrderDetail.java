@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "importOrderDetail")
+@Table(name = "tb_importOrderDetail")
 @Data
 @Getter
 @Setter

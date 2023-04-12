@@ -3,11 +3,8 @@ package com.example.techsavvy.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Entity
-@Table(name = "evaluate")
+@Table(name = "tb_evaluate")
 @Data
 @Getter
 @Setter
@@ -26,14 +23,7 @@ public class Evaluate {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "product_id")
     private Product product;
-
-    @OneToMany(mappedBy = "evaluate", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Image> images = new ArrayList<>();
-
-    @ManyToOne
-    @JoinColumn(name = "employee_id")
-    private Employee employee;
-
+    
     @ManyToOne
     @JoinColumn(name = "member_id")
     private Member member;
