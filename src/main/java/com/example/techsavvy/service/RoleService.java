@@ -8,5 +8,7 @@ public interface RoleService {
     Role createRole(Role role);
     List<Role> getAll();
 
-    Role getOneRole(Role role);
+    Role getByName(String name);
+
+    Role getById(int id);
 }

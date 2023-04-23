@@ -11,7 +11,6 @@ public interface CurrentCustomerService {
 
     CurrentCustomer getOne(CurrentCustomer currentCustomer);
 
-    CurrentCustomer getById(int id);
 
     CurrentCustomer getByEmail(String email);
     CurrentCustomer getByPhone(String phone);

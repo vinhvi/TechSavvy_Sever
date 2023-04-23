@@ -1,9 +1,9 @@
 package com.example.techsavvy.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.Date;
 
 @Entity
 @Table(name = "tb_currentCustomer")
@@ -12,9 +12,23 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CurrentCustomer extends Person {
-
+public class CurrentCustomer {
+    @Id
+    private String id;
     @Column(nullable = false, unique = true)
-    private String address;
+    private String firstName;
+    @Column(nullable = false, unique = true)
+    private String lastName;
+    @Column(nullable = false, unique = true)
+    private String email;
+    @Column(nullable = false, unique = true)
+    private Date dateOfBirth;
+    @Column(nullable = false, unique = true)
+    private int sex;
+    @Column(nullable = false, unique = true)
+    private String phone;
+    @OneToOne(orphanRemoval = true)
+    @JoinColumn(name = "address_id")
+    private Address address;
 
 }

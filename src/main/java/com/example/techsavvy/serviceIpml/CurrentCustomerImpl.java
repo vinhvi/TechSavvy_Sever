@@ -46,16 +46,10 @@ public class CurrentCustomerImpl implements CurrentCustomerService {
         currentCustomer1.setSex(currentCustomer.getSex());
         currentCustomer1.setFirstName(currentCustomer.getFirstName());
         currentCustomer1.setLastName(currentCustomer.getLastName());
-        currentCustomer1.setPassword(currentCustomer.getPassword());
         currentCustomer1.setPhone(currentCustomer.getPhone());
         return currentCustomer1;
     }
 
-    @Override
-    public CurrentCustomer getById(int id) {
-        CurrentCustomer currentCustomer1 = currentCustomerRepository.findById(id);
-        return getOne(currentCustomer1);
-    }
 
     @Override
     public CurrentCustomer getByEmail(String email) {

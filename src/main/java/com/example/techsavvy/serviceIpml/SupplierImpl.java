@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.Random;
 
 @Service
 @RequiredArgsConstructor
@@ -29,28 +31,46 @@ public class SupplierImpl implements SupplierService {
     }
 
     @Override
-    public void delete(int id) {
-        Supplier supplier = getById(id);
+    public void delete(String id) {
+        Supplier supplier = supplierRepository.findSupplierById(id);
         supplier.setStatus(false);
         supplierRepository.save(supplier);
     }
 
     @Override
-    public Supplier getById(int id) {
-        Supplier supplier = supplierRepository.findById(id);
-        return getOne(supplier);
+    public String generateId() {
+        Random random = new Random();
+        String newId = "";
+        boolean check = false;
+        int attempts = 0;
+        int maxAttempts = 10000; // set a maximum number of attempts to prevent infinite loop
+        while (!check && attempts < maxAttempts){
+            int number = random.nextInt(10000);
+            newId = "NCC" + String.format("%04d", number);
+            if (supplierRepository.findSupplierById(newId) == null){
+                check = true;
+            }
+            attempts++;
+        }
+        if (!check) {
+            throw new RuntimeException("Unable to generate a unique ID after " + maxAttempts + " attempts.");
+        }
+        return newId;
+    }
+
+    @Override
+    public Supplier getById(String id) {
+        return supplierRepository.findSupplierById(id);
     }
 
     @Override
     public Supplier getByPhone(String phone) {
-        Supplier supplier = supplierRepository.findByPhone(phone);
-        return getOne(supplier);
+        return supplierRepository.findByPhone(phone);
     }
 
     @Override
     public Supplier getByEmail(String email) {
-        Supplier supplier = supplierRepository.findByEmail(email);
-        return getOne(supplier);
+        return supplierRepository.findByEmail(email);
     }
 
     @Override
@@ -67,13 +87,6 @@ public class SupplierImpl implements SupplierService {
 
     @Override
     public List<Supplier> getAll() {
-        List<Supplier> suppliers = supplierRepository.findAll();
-        List<Supplier> supplierList = new ArrayList<>();
-        Supplier supplier;
-        for (Supplier supplier1 : suppliers) {
-            supplier = getOne(supplier1);
-            supplierList.add(supplier);
-        }
-        return supplierList;
+        return supplierRepository.findAll();
     }
 }

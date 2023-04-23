@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.UUID;
+
 @MappedSuperclass
 @Data
 @Getter
@@ -13,21 +15,23 @@ import java.util.Date;
 
 public abstract class Person {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
     @Column(nullable = false, unique = true)
+    private String id;
+    @Column(nullable = false)
     private String firstName;
-    @Column(nullable = false,unique = true)
+    @Column(nullable = false)
     private String lastName;
     @Column(nullable = false, unique = true)
     private String email;
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private Date dateOfBirth;
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private int sex;
     @Column(nullable = false, unique = true)
     private String phone;
-    @Column(nullable = false, unique = true)
-    private String password;
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "address_id")
+    private Address address;
+
 
 }

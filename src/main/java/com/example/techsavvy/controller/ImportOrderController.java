@@ -31,4 +31,8 @@ public class ImportOrderController {
     public ResponseEntity<List<ImportOrderDetail>> getByImportOrderId(@PathVariable("id") int id) {
         return ResponseEntity.ok(importDetailService.getListByImportOrderId(id));
     }
+    @GetMapping("generateRandomId")
+    public ResponseEntity<String> getRandomIdImportOrder(){
+        return ResponseEntity.ok().body(importService.generateId());
+    }
 }

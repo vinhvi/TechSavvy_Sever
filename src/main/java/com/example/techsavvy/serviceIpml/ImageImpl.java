@@ -8,8 +8,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -25,36 +24,27 @@ public class ImageImpl implements ImageService {
     }
 
     @Override
-    public Image getOneImage(Image image) {
-        Image image1 = new Image();
-        image1.setId(image.getId());
-        image1.setUrl(image.getUrl());
-        image1.setHienThi(image.isHienThi());
-        return image1;
+    public void delete(String id) {
+        imageRepository.deleteById(id);
     }
 
     @Override
-    public Image getById(int id) {
-        return imageRepository.findById(id);
+    public Optional<Optional<Image>> getOne(String id) {
+        return Optional.of(imageRepository.findById(id));
+    }
+
+    @Override
+    public boolean exitsts(String id) {
+        return imageRepository.existsById(id);
     }
 
 
     @Override
-    public List<Image> getListImage(List<Image> images) {
-        List<Image> imageList = new ArrayList<>();
-        for (Image image1 : images) {
-            imageList.add(getById(image1.getId()));
-        }
-        return imageList;
+    public Image getById(String id) {
+        return imageRepository.findImageById(id);
     }
 
-    @Override
-    public List<Image> saveLisImage(List<Image> images) {
-        List<Image> imageList = new ArrayList<>();
-        for (Image image : images) {
-            Image savedImage = imageRepository.save(image);
-            imageList.add(savedImage);
-        }
-        return imageList;
-    }
+
+
+
 }

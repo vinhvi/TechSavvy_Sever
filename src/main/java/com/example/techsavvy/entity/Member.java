@@ -14,16 +14,10 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Member extends Person {
-    @Column(nullable = false, unique = true)
-    private String address;
-
     private int score;
 
-    @ManyToMany
-    @JoinTable(name = "members_roles",
-            joinColumns = @JoinColumn(name = "member_id"),
-            inverseJoinColumns = @JoinColumn(name = "roles_id"))
-    private Set<Role> roles = new LinkedHashSet<>();
-
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "account_id")
+    private Account account;
 
 }

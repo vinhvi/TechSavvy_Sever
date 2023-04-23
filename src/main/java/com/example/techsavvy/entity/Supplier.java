@@ -13,13 +13,14 @@ import lombok.*;
 public class Supplier {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
+    private String id;
     private String name;
     private String email;
     private String phone;
-    private String address;
     private boolean status;
+
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "address_id")
+    private Address address;
 
 }

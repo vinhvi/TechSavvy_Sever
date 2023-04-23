@@ -10,11 +10,11 @@ import java.util.List;
 public interface ProductService {
     List<Product> getAllProducts();
 
-    Product getProductById(int id);
+    Product getProductById(String id);
 
     Product saveProduct(Product product);
 
-    void deleteProduct(int id);
+    void deleteProduct(String id);
 
     Type getProductsByType(int idType);
 
@@ -24,6 +24,8 @@ public interface ProductService {
     Product formatProduct(Product product);
 
     List<Product> getListProduct(List<Product> productList);
+    String generateLoHang();
+    String generateIdProduct();
 
 
 

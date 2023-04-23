@@ -3,16 +3,17 @@ package com.example.techsavvy.service;
 
 import com.example.techsavvy.entity.Image;
 
-import java.util.List;
+import java.util.Optional;
 
 public interface ImageService {
     Image addImage(Image image);
 
-    Image getOneImage(Image image);
+    void delete(String id);
 
-    Image getById(int id);
+    Optional<Optional<Image>> getOne(String id);
 
-    List<Image> getListImage(List<Image> images);
+    boolean exitsts(String id);
 
-    List<Image> saveLisImage(List<Image> images);
+    Image getById(String id);
+
 }

@@ -23,6 +23,11 @@ public class TypeController {
         return ResponseEntity.ok().body(typeService.getTypeById(id));
     }
 
+    @GetMapping("/getByName/{name}")
+    public ResponseEntity<Type> getTypeByName(@PathVariable("name") String name){
+        return ResponseEntity.ok().body(typeService.getByName(name));
+    }
+
     @GetMapping("/getByProduct/{id}")
     public ResponseEntity<Type> getByProduct(@PathVariable("id") int id) {
         return ResponseEntity.ok().body(typeService.getOneType(id));

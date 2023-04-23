@@ -11,8 +11,19 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("api/products")
 public class ProductController {
     private final ProductService productService;
+
     @PostMapping("/add")
-    public ResponseEntity<Product> addProduct(@RequestBody Product product){
+    public ResponseEntity<Product> addProduct(@RequestBody Product product) {
         return ResponseEntity.ok(productService.saveProduct(product));
+    }
+
+    @GetMapping("/generateIdProduct")
+    public ResponseEntity<String> getRandomIdProduct() {
+        return ResponseEntity.ok().body(productService.generateIdProduct());
+    }
+
+    @GetMapping("/generateLH")
+    public ResponseEntity<String> getRandomLH() {
+        return ResponseEntity.ok().body(productService.generateLoHang());
     }
 }

@@ -12,13 +12,9 @@ import lombok.*;
 @NoArgsConstructor
 public class Image {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
-    @Column(name = "url")
-    private String url;
-
-    private boolean hienThi;
+    private String id;
+    private String name;
+    private String imageUrl;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "product_id")

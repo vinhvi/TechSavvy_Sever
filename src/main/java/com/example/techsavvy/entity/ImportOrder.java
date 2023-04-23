@@ -15,8 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 public class ImportOrder {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private String id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "supplier_id")

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -23,14 +24,12 @@ public class MemberImpl implements MemberService {
     private final MemberRepository memberRepository;
     @Override
     public Member addCustomer(Member member) {
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        member.setPassword(encoder.encode(member.getPassword()));
         return  memberRepository.save(member);
     }
 
     @Override
-    public Member getCustomerById(int id) {
-        return null;
+    public Member getById(String id) {
+        return memberRepository.findCustomerById(id);
     }
 
     @Override

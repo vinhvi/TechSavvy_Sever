@@ -5,8 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface SupplierRepository extends JpaRepository<Supplier,Integer> {
-    Supplier findById(int id);
+public interface SupplierRepository extends JpaRepository<Supplier,String> {
+    Supplier findSupplierById(String id);
     Supplier findByEmail(String email);
     Supplier findByPhone(String phone);
 }

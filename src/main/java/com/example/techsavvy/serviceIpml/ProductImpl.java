@@ -1,24 +1,17 @@
 package com.example.techsavvy.serviceIpml;
 
-import com.example.techsavvy.entity.Image;
 import com.example.techsavvy.entity.Product;
-import com.example.techsavvy.entity.Specification;
 import com.example.techsavvy.entity.Type;
 import com.example.techsavvy.repository.ProductRepository;
-import com.example.techsavvy.repository.SpecificationRepository;
-import com.example.techsavvy.service.ImageService;
 import com.example.techsavvy.service.ProductService;
-import com.example.techsavvy.service.SpecificationService;
-import com.example.techsavvy.service.TypeService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.Random;
 
 @Service
 @RequiredArgsConstructor
@@ -34,7 +27,7 @@ public class ProductImpl implements ProductService {
     }
 
     @Override
-    public Product getProductById(int id) {
+    public Product getProductById(String id) {
 
         return productRepository.findProductById(id);
     }
@@ -46,7 +39,7 @@ public class ProductImpl implements ProductService {
     }
 
     @Override
-    public void deleteProduct(int id) {
+    public void deleteProduct(String id) {
         Product product = getProductById(id);
         product.setStatus(false);
         productRepository.save(product);
@@ -60,8 +53,7 @@ public class ProductImpl implements ProductService {
 
     @Override
     public Product getOneProduct(Product product) {
-        Product product1 = formatProduct(product);
-        return product1;
+        return formatProduct(product);
     }
 
     @Override
@@ -79,6 +71,50 @@ public class ProductImpl implements ProductService {
     @Override
     public List<Product> getListProduct(List<Product> productList) {
         return null;
+    }
+
+    @Override
+    public String generateLoHang() {
+        Random random = new Random();
+        String loHang = "";
+        boolean check = false;
+        int attempts = 0;
+        int maxAttempts = 10000; // set a maximum number of attempts to prevent infinite loop
+        while (!check && attempts < maxAttempts) {
+            int number = random.nextInt(10000);
+            loHang = "LHS" + String.format("%04d", number);
+            if (productRepository.findProductByLo(loHang) == null) {
+                check = true;
+            }
+            attempts++;
+        }
+        if (!check) {
+            throw new RuntimeException("Unable to generate a unique ID after " + maxAttempts + " attempts.");
+        }
+        return loHang;
+    }
+
+    @Override
+    public String generateIdProduct() {
+        Random random = new Random();
+
+        String newId = "";
+        boolean isUnique = false;
+        while (!isUnique) {
+            int number = random.nextInt(10000);
+            newId = "SP" + String.format("%04d", number);
+            List<Product> products = productRepository.findAll();
+            if (products == null || products.isEmpty()) {
+                isUnique = true;
+            } else {
+                String finalNewId = newId;
+                boolean isDuplicate = products.stream().anyMatch(p -> p.getId().equals(finalNewId));
+                if (!isDuplicate) {
+                    isUnique = true;
+                }
+            }
+        }
+        return newId;
     }
 
 }
