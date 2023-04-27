@@ -41,6 +41,11 @@ public class EmployeeController {
     }
     @GetMapping("/employee/getByEmail/{email}")
     public ResponseEntity<Employee> getByEmail(@PathVariable("email") String email){
-        return ResponseEntity.ok().body(employeeService.getByEmail(email));
+        Employee employee = employeeService.getByEmail(email);
+        if (employee != null) {
+            return ResponseEntity.ok().body(employee);
+        } else {
+            return ResponseEntity.status(402).build();
+        }
     }
 }

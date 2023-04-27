@@ -3,6 +3,8 @@ package com.example.techsavvy.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.io.Serializable;
+
 @Entity
 @Table(name = "tb_payments")
 @Data
@@ -10,7 +12,7 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Payments {
+public class Payments  implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

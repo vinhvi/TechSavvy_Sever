@@ -10,7 +10,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.Random;
 
 @Service
@@ -23,6 +22,7 @@ public class ProductImpl implements ProductService {
 
     @Override
     public List<Product> getAllProducts() {
+
         return productRepository.findAll();
     }
 
@@ -51,27 +51,6 @@ public class ProductImpl implements ProductService {
         return null;
     }
 
-    @Override
-    public Product getOneProduct(Product product) {
-        return formatProduct(product);
-    }
-
-    @Override
-    public Product formatProduct(Product product) {
-        Product product1 = new Product();
-        product1.setId(product.getId());
-        product1.setName(product.getName());
-        product1.setCounts(product.getCounts());
-        product1.setLo(product.getLo());
-        product1.setStatus(product.isStatus());
-        product1.setOrigin(product.getOrigin());
-        return product1;
-    }
-
-    @Override
-    public List<Product> getListProduct(List<Product> productList) {
-        return null;
-    }
 
     @Override
     public String generateLoHang() {
@@ -97,14 +76,13 @@ public class ProductImpl implements ProductService {
     @Override
     public String generateIdProduct() {
         Random random = new Random();
-
         String newId = "";
         boolean isUnique = false;
         while (!isUnique) {
             int number = random.nextInt(10000);
             newId = "SP" + String.format("%04d", number);
             List<Product> products = productRepository.findAll();
-            if (products == null || products.isEmpty()) {
+            if (products.isEmpty()) {
                 isUnique = true;
             } else {
                 String finalNewId = newId;

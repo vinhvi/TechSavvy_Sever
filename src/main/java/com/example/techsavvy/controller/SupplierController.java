@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("api/suppliers")
+@RequestMapping("api/manage/suppliers")
 public class SupplierController {
     private final SupplierService supplierService;
 

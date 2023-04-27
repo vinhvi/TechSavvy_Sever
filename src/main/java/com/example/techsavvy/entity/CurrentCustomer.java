@@ -3,6 +3,7 @@ package com.example.techsavvy.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
@@ -12,7 +13,7 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CurrentCustomer {
+public class CurrentCustomer implements Serializable {
     @Id
     private String id;
     @Column(nullable = false, unique = true)

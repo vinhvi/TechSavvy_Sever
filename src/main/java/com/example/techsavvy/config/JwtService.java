@@ -1,14 +1,11 @@
 package com.example.techsavvy.config;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.module.SimpleModule;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.jackson.io.JacksonSerializer;
 import io.jsonwebtoken.security.Keys;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -38,19 +35,16 @@ public class JwtService {
     }
 
     public String createToken(Map<String, Object> extraClaims, UserDetails userDetails) {
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.registerModule(new SimpleModule().addSerializer(SimpleGrantedAuthority.class,
-                new SimpleGrantedAuthoritySerializer()));
+
         return Jwts.builder()
                 .setClaims(extraClaims)
                 .setSubject(userDetails.getUsername())
-                .claim("authorities", userDetails.getAuthorities())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
+                .setExpiration(new Date(System.currentTimeMillis() + 1000L * 60 * 60 * 24 * 30)) // thời gian hết hạn là 30 ngày
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)
-                .serializeToJsonWith(new JacksonSerializer<>(objectMapper))
                 .compact();
     }
+
 
     public boolean isTokenValid(String token, UserDetails userDetails) {
         final String username = extractUsername(token);

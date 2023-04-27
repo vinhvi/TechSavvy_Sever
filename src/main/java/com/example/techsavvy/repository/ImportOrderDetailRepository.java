@@ -8,5 +8,6 @@ import java.util.List;
 
 @Repository
 public interface ImportOrderDetailRepository extends JpaRepository<ImportOrderDetail, Integer> {
-    List<ImportOrderDetail> findByImportOrder_Id(int id);
+    List<ImportOrderDetail> findByImportOrder_Id(String id);
+
 }

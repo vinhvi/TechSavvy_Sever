@@ -1,7 +1,11 @@
 package com.example.techsavvy.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.io.Serializable;
 
 @Entity
 @Table(name = "tb_images")
@@ -10,7 +14,7 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Image {
+public class Image implements Serializable {
     @Id
     private String id;
     private String name;

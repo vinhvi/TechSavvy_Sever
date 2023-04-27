@@ -1,10 +1,10 @@
 package com.example.techsavvy.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "tb_product")
@@ -13,6 +13,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Product {
     @Id
     private String id;
@@ -21,17 +22,9 @@ public class Product {
     private Type type;
     private String name;
     private String origin;
-    private float price;
-    private float priceImport;
     private int counts;
     private String describes;
     private boolean status;
     private String lo;
-
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Image> images = new ArrayList<>();
-
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Specification> specifications = new ArrayList<>();
 
 }

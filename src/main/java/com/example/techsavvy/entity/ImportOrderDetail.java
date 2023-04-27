@@ -1,7 +1,10 @@
 package com.example.techsavvy.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.io.Serializable;
 
 @Entity
 @Table(name = "tb_importOrderDetail")
@@ -10,16 +13,17 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ImportOrderDetail {
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+public class ImportOrderDetail  implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "importOrder_id")
     private ImportOrder importOrder;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "products_id")
     private Product product;
     private int count;

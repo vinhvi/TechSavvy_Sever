@@ -27,20 +27,7 @@ public class ImportOrderDetailImpl implements ImportDetailService {
     }
 
     @Override
-    public List<ImportOrderDetail> getListByImportOrderId(int id) {
-        List<ImportOrderDetail> importOrderDetails = importOrderDetailRepository.findByImportOrder_Id(id);
-        List<ImportOrderDetail> importOrderDetailList = new ArrayList<>();
-        ImportOrderDetail importOrderDetail1 = new ImportOrderDetail();
-        for (ImportOrderDetail importOrderDetail : importOrderDetails) {
-            ImportOrder importOrder = new ImportOrder();
-            importOrder.setId(importOrderDetail.getImportOrder().getId());
-            Product product = new Product();
-            product.setId(importOrderDetail.getProduct().getId());
-            importOrderDetail1.setId(importOrderDetail.getId());
-            importOrderDetail1.setImportOrder(importOrder);
-            importOrderDetail1.setProduct(product);
-            importOrderDetailList.add(importOrderDetail1);
-        }
-        return importOrderDetailList;
+    public List<ImportOrderDetail> getListByImportOrderId(String id) {
+        return importOrderDetailRepository.findByImportOrder_Id(id);
     }
 }

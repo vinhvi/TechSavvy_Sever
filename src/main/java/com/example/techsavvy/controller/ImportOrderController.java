@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("api/importOrders")
+@RequestMapping("api/manage/importOrders")
 public class ImportOrderController {
     private final ImportService importService;
     private final ImportDetailService importDetailService;
@@ -27,12 +27,18 @@ public class ImportOrderController {
         return ResponseEntity.ok(importDetailService.save(importOrderDetail));
     }
 
-    @GetMapping("/getByImportOrderId/{id}")
-    public ResponseEntity<List<ImportOrderDetail>> getByImportOrderId(@PathVariable("id") int id) {
+    @GetMapping("/getImportOrderDetailByImportOrderId/{id}")
+    public ResponseEntity<List<ImportOrderDetail>> getByImportOrderId(@PathVariable("id") String id) {
         return ResponseEntity.ok(importDetailService.getListByImportOrderId(id));
     }
+
+    @GetMapping("/getAllImportOrder")
+    public ResponseEntity<List<ImportOrder>> getAll() {
+        return ResponseEntity.ok().body(importService.getAllImportOrder());
+    }
+
     @GetMapping("generateRandomId")
-    public ResponseEntity<String> getRandomIdImportOrder(){
+    public ResponseEntity<String> getRandomIdImportOrder() {
         return ResponseEntity.ok().body(importService.generateId());
     }
 }

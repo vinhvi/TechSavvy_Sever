@@ -28,7 +28,12 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody Account account){
+        String token = accountService.login(account);
+        if (token != null) {
+            return ResponseEntity.ok().body(token);
+        } else {
+            return ResponseEntity.badRequest().body("Tài khoản hoặc mật khẩu khôn đúng !!");
+        }
 
-        return ResponseEntity.ok().body(accountService.login(account));
     }
 }

@@ -46,4 +46,9 @@ public class ImportOrderImpl implements ImportService {
         return newId;
     }
 
+    @Override
+    public List<ImportOrder> getAllImportOrder() {
+        return importOrderRepository.findAll();
+    }
+
 }

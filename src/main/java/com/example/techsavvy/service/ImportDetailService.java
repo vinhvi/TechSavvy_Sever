@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface ImportDetailService {
    ImportOrderDetail save(ImportOrderDetail importOrderDetail);
-   List<ImportOrderDetail> getListByImportOrderId(int id);
+
+   List<ImportOrderDetail> getListByImportOrderId(String id);
 
 }

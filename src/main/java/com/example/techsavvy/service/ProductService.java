@@ -18,12 +18,6 @@ public interface ProductService {
 
     Type getProductsByType(int idType);
 
-    Product getOneProduct(Product product);
-
-
-    Product formatProduct(Product product);
-
-    List<Product> getListProduct(List<Product> productList);
     String generateLoHang();
     String generateIdProduct();
 

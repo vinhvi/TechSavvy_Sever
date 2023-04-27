@@ -3,6 +3,7 @@ package com.example.techsavvy.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.io.Serializable;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -13,7 +14,7 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Member extends Person {
+public class Member extends Person implements Serializable {
     private int score;
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
