@@ -20,7 +20,7 @@ public class Image implements Serializable {
     private String name;
     private String imageUrl;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
 

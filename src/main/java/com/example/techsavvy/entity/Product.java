@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "tb_product")
@@ -26,5 +28,6 @@ public class Product {
     private String describes;
     private boolean status;
     private String lo;
+
 
 }

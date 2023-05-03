@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
-import java.util.UUID;
+
 
 @MappedSuperclass
 @Data
@@ -29,7 +29,7 @@ public abstract class Person {
     private int sex;
     @Column(nullable = false, unique = true)
     private String phone;
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(cascade = CascadeType.PERSIST, optional = false)
     @JoinColumn(name = "address_id")
     private Address address;
 

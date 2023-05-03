@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -93,6 +94,24 @@ public class ProductImpl implements ProductService {
             }
         }
         return newId;
+    }
+
+    @Override
+    public Product getByName(String name) {
+        return productRepository.findProductByName(name);
+    }
+
+    @Override
+    public List<Product> getByIdOrName(String key) {
+        List<Product> productList = new ArrayList<>();
+        Product product;
+        product = productRepository.findProductById(key);
+        if (product == null) {
+            productList = productRepository.findAllByName(key);
+        } else {
+            productList.add(product);
+        }
+        return productList;
     }
 
 }

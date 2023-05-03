@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/shipping-company")
@@ -19,13 +21,22 @@ public class ShippingController {
         return ResponseEntity.ok().body(shippingCompanyService.add(shippingCompany));
     }
 
-    @GetMapping("/getByPhoneOrEmail")
-    public ResponseEntity<?> getByEmailOrPhone(@RequestParam String value) {
-        try {
-            ShippingCompany shippingCompany = shippingCompanyService.getByEmailOrPhone(value);
+    @GetMapping("/getByPhoneOrEmail/{value}")
+    public ResponseEntity<?> getByEmailOrPhone(@PathVariable("value") String value) {
+        ShippingCompany shippingCompany = shippingCompanyService.getByEmailOrPhone(value);
+        if (shippingCompany != null) {
             return ResponseEntity.ok(shippingCompany);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Internal Server Error");
         }
+        return ResponseEntity.status(400).body("Không tìm thấy !!");
+    }
+
+    @GetMapping("/getAllShippingCompany")
+    public ResponseEntity<?> getListShippingCompany(){
+        List<ShippingCompany> shippingCompanies = shippingCompanyService.getList();
+        if (shippingCompanies != null) {
+            return ResponseEntity.ok(shippingCompanies);
+        }
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Lỗi Server!!");
     }
 }
+

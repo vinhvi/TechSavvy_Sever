@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @Transactional
@@ -22,7 +24,7 @@ public class ShippingCompanyImpl implements ShippingCompanyService {
 
     @Override
     public ShippingCompany getById(int id) {
-        return getOne(shippingCompanyRepository.findById(id));
+        return shippingCompanyRepository.findById(id);
     }
 
     @Override
@@ -30,26 +32,29 @@ public class ShippingCompanyImpl implements ShippingCompanyService {
         ShippingCompany shippingCompany = shippingCompanyRepository.findByEmail(value);
         if (shippingCompany == null) {
             shippingCompany = shippingCompanyRepository.findByPhone(value);
-            if (shippingCompany == null) {
-                throw new RuntimeException("Không tìm thấy đơn vị vận chuyển với " + value);
-            }
         }
-        return getOne(shippingCompany);
+        return shippingCompany;
     }
 
     @Override
     public ShippingCompany update(ShippingCompany shippingCompany) {
-        return null;
+        ShippingCompany oldShippingCompany = shippingCompanyRepository.findById(shippingCompany.getId());
+        if (oldShippingCompany != null) {
+            oldShippingCompany.setAddress(shippingCompany.getAddress());
+            oldShippingCompany.setName(shippingCompany.getName());
+            oldShippingCompany.setEmail(shippingCompany.getEmail());
+            oldShippingCompany.setPhone(shippingCompany.getPhone());
+            shippingCompanyRepository.save(oldShippingCompany);
+        } else {
+            return null;
+        }
+        return oldShippingCompany;
     }
 
     @Override
-    public ShippingCompany getOne(ShippingCompany shippingCompany) {
-        ShippingCompany shippingCompany1 = new ShippingCompany();
-        shippingCompany1.setId(shippingCompany.getId());
-        shippingCompany1.setName(shippingCompany.getName());
-        shippingCompany1.setPhone(shippingCompany.getPhone());
-        shippingCompany1.setEmail(shippingCompany.getEmail());
-        shippingCompany1.setAddress(shippingCompany.getAddress());
-        return shippingCompany1;
+    public List<ShippingCompany> getList() {
+        return shippingCompanyRepository.findAll();
     }
+
+
 }

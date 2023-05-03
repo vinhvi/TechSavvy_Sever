@@ -34,7 +34,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         final String userName;
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);
-            System.out.println("Lỗi token from client: " + authHeader);
+//            System.out.println("Lỗi token from client: " + authHeader);
             return;
         }
         jwt = authHeader.substring(7);

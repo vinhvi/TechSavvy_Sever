@@ -6,11 +6,9 @@ import java.util.List;
 
 public interface EvaluateService {
     Evaluate save(Evaluate evaluate);
-
     Evaluate getById(int id);
+    List<Evaluate> getListEvaluateByProduct(String product_id);
 
-    Evaluate getOne(Evaluate evaluate);
+    boolean removeById(int id);
 
-    List<Evaluate> getListEvaluate(List<Evaluate> evaluates);
-    Evaluate fromatEvaluate(Evaluate evaluate);
 }

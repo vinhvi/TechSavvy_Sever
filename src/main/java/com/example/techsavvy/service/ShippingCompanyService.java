@@ -2,6 +2,8 @@ package com.example.techsavvy.service;
 
 import com.example.techsavvy.entity.ShippingCompany;
 
+import java.util.List;
+
 public interface ShippingCompanyService {
 
     ShippingCompany add(ShippingCompany shippingCompany);
@@ -12,5 +14,6 @@ public interface ShippingCompanyService {
 
     ShippingCompany update(ShippingCompany shippingCompany);
 
-    ShippingCompany getOne(ShippingCompany shippingCompany);
+    List<ShippingCompany> getList();
+
 }

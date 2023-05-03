@@ -22,16 +22,12 @@ public class Answer implements Serializable {
     private String content;
     private Date replyDate;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "question_id", nullable = false)
     private Question question;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "employee_id")
-    private Employee employee;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "member_id")
-    private Member member;
+    @ManyToOne
+    @JoinColumn(name = "account_id")
+    private Account account;
 
 }

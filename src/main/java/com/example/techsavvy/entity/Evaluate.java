@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 @Table(name = "tb_evaluate")
@@ -22,12 +23,14 @@ public class Evaluate implements Serializable {
 
     private int value;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    private Date evaluationDate;
+
+    @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
-    
+
     @ManyToOne
-    @JoinColumn(name = "member_id")
-    private Member member;
+    @JoinColumn(name = "account_id")
+    private Account account;
 
 }

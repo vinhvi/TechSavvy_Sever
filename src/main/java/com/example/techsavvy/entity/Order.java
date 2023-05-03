@@ -1,6 +1,5 @@
 package com.example.techsavvy.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -14,13 +13,11 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Order implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private String id;
 
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne
     @JoinColumn(name = "payments_id")
     private Payments payments;
 
@@ -32,24 +29,20 @@ public class Order implements Serializable {
     @JoinColumn(name = "employee_id")
     private Employee employee;
     private Date bookingDate;
-
-    private String address;
-
-    private Date deliveryDate;
-
     private String notes;
 
     private boolean statusPayment;
 
-    private boolean statusDelivery;
+    private String statusDelivery;
 
-
-    @ManyToOne
-    @JoinColumn(name = "member_id")
-    private Member member;
+    private float totalMoney;
 
     @ManyToOne
-    @JoinColumn(name = "current_customer_id")
-    private CurrentCustomer currentCustomer;
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
+
+    @ManyToOne
+    @JoinColumn(name = "voucher_id")
+    private Voucher voucher;
 
 }

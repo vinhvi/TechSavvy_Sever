@@ -1,8 +1,10 @@
 package com.example.techsavvy.controller;
 
+import com.example.techsavvy.entity.Evaluate;
 import com.example.techsavvy.entity.Options;
 import com.example.techsavvy.entity.Product;
 import com.example.techsavvy.entity.Specification;
+import com.example.techsavvy.service.EvaluateService;
 import com.example.techsavvy.service.OptionsService;
 import com.example.techsavvy.service.ProductService;
 import com.example.techsavvy.service.SpecificationService;
@@ -60,5 +62,15 @@ public class ProductController {
             return ResponseEntity.badRequest().body(false);
         }
     }
+
+    @GetMapping("/getByIdOrName/{key}")
+    public ResponseEntity<List<Product>> getByIdOrName(@PathVariable("key") String key) {
+        String value = key.replace("+", " ");
+        System.out.println(value);
+        return ResponseEntity.ok().body(productService.getByIdOrName(value));
+    }
+
+
+
 
 }

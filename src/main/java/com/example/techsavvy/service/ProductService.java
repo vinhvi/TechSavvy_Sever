@@ -20,6 +20,9 @@ public interface ProductService {
 
     String generateLoHang();
     String generateIdProduct();
+    Product getByName(String name);
+
+    List<Product> getByIdOrName(String key);
 
 
 

@@ -2,23 +2,17 @@ package com.example.techsavvy.serviceIpml;
 
 import com.example.techsavvy.config.JwtService;
 import com.example.techsavvy.entity.Account;
-import com.example.techsavvy.entity.Employee;
-import com.example.techsavvy.entity.Member;
 import com.example.techsavvy.repository.AccountRepository;
 import com.example.techsavvy.service.AccountService;
-import com.example.techsavvy.service.EmployeeService;
-import com.example.techsavvy.service.MemberService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
