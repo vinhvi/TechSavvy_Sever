@@ -15,12 +15,10 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Customer extends Person implements Serializable {
-
     private String typeCustomer;
-
     private int score;
 
-    @OneToOne(cascade = CascadeType.PERSIST, optional = true)
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "account_id")
     private Account account;
 

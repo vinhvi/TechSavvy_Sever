@@ -1,8 +1,12 @@
 package com.example.techsavvy.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_options")
@@ -21,13 +25,14 @@ public class Options {
     private float price;
     private float priceImport;
     private int count;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 
-    @ManyToOne
-    @JoinColumn(name = "discount_id")
-    private Discount discount;
+    @ManyToMany
+    @JoinTable(name = "tb_options_discounts",
+            joinColumns = @JoinColumn(name = "options_id"),
+            inverseJoinColumns = @JoinColumn(name = "discounts_id"))
+    private Set<Discount> discounts = new LinkedHashSet<>();
 
 }

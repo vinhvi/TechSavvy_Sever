@@ -12,7 +12,6 @@ import java.util.Date;
 @Data
 @Getter
 @Setter
-
 public abstract class Person {
     @Id
     @Column(nullable = false, unique = true)

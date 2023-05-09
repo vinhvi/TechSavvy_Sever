@@ -70,7 +70,10 @@ public class ProductController {
         return ResponseEntity.ok().body(productService.getByIdOrName(value));
     }
 
-
+    @GetMapping("/getProductById/{id}")
+    public ResponseEntity<Product> getById(@PathVariable("id") String id) {
+        return ResponseEntity.ok().body(productService.getProductById(id));
+    }
 
 
 }

@@ -30,7 +30,7 @@ public class OptionsController {
     public ResponseEntity<Boolean> update(@RequestBody Options options) {
         Options options1 = optionsService.updateOptions(options);
         if (options1 != null) {
-            System.out.println("Options after update: "+options1);
+            System.out.println("Options after update: " + options1);
             return ResponseEntity.ok().body(true);
         } else {
             return ResponseEntity.badRequest().body(false);
@@ -40,5 +40,10 @@ public class OptionsController {
     @GetMapping("/getByProduct/{productId}")
     public ResponseEntity<List<Options>> getOptionsByProduct(@PathVariable("productId") String productId) {
         return ResponseEntity.ok().body(optionsService.getOptionsByProduct(productId));
+    }
+
+    @GetMapping("/getByDiscount/{id_discount}")
+    public ResponseEntity<List<Options>> getListOptionsByDiscountId(@PathVariable("id_discount") String id) {
+        return ResponseEntity.ok().body(optionsService.getListOptionsByDiscountId(id));
     }
 }

@@ -6,6 +6,7 @@ import lombok.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -26,6 +27,7 @@ public class Product {
     private String origin;
     private int counts;
     private String describes;
+    private Date dateImport;
     private boolean status;
     private String lo;
 

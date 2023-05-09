@@ -29,8 +29,9 @@ public class EvaluateController {
         return ResponseEntity.ok().body(evaluateService.getById(id));
     }
 
-    @PostMapping("/deleteById/{id}")
+    @DeleteMapping("/deleteById/{id}")
     public ResponseEntity<?> deleteById(@PathVariable("id") int id) {
-        return ResponseEntity.ok().body(evaluateService.removeById(id));
+        evaluateService.removeById(id);
+        return ResponseEntity.ok().body("Đã xóa đánh giá!");
     }
 }

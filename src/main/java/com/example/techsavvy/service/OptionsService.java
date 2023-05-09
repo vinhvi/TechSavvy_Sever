@@ -13,6 +13,7 @@ public interface OptionsService {
 
     Options updateOptions(Options options);
 
+    List<Options> getListOptionsByDiscountId(String id);
 
 
 }

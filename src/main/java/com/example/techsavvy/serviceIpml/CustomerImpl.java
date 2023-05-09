@@ -2,6 +2,8 @@ package com.example.techsavvy.serviceIpml;
 
 import com.example.techsavvy.entity.Customer;
 import com.example.techsavvy.repository.CustomerRepository;
+import com.example.techsavvy.service.AccountService;
+import com.example.techsavvy.service.AddressService;
 import com.example.techsavvy.service.CustomerService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -20,9 +22,15 @@ import java.util.Random;
 @Slf4j
 public class CustomerImpl implements CustomerService {
     private final CustomerRepository customerRepository;
+    private final AddressService addressService;
+    private final AccountService accountService;
 
     @Override
     public Customer addCustomer(Customer customer) {
+        customer.setAddress(addressService.save(customer.getAddress()));
+        if (customer.getAccount() != null) {
+            customer.setAccount(accountService.register(customer.getAccount()));
+        }
         return customerRepository.save(customer);
     }
 

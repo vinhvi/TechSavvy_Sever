@@ -1,5 +1,6 @@
 package com.example.techsavvy.serviceIpml;
 
+import com.example.techsavvy.entity.Discount;
 import com.example.techsavvy.entity.Options;
 import com.example.techsavvy.entity.Product;
 import com.example.techsavvy.repository.OptionsRepository;
@@ -9,7 +10,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -48,6 +51,22 @@ public class OptionsImpl implements OptionsService {
             return options;
         }
         return null;
+    }
+
+    @Override
+    public List<Options> getListOptionsByDiscountId(String id) {
+        List<Options> optionsList = optionsRepository.findAll();
+        List<Options> newOptions = new ArrayList<>();
+        int dem = 0;
+        for (Options options : optionsList) {
+            Set<Discount> discountSet = options.getDiscounts();
+            for (Discount discount : discountSet) {
+                if (discount.getId().equals(id)) {
+                    newOptions.add(options);
+                }
+            }
+        }
+        return newOptions;
     }
 
 

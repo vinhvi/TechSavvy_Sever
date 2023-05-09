@@ -19,7 +19,6 @@ public class Image implements Serializable {
     private String id;
     private String name;
     private String imageUrl;
-
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;

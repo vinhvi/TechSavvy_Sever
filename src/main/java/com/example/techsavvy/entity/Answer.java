@@ -18,14 +18,11 @@ public class Answer implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
     private String content;
     private Date replyDate;
-
     @ManyToOne
     @JoinColumn(name = "question_id", nullable = false)
     private Question question;
-
     @ManyToOne
     @JoinColumn(name = "account_id")
     private Account account;

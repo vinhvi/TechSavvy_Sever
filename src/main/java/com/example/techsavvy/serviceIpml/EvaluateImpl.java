@@ -33,8 +33,8 @@ public class EvaluateImpl implements EvaluateService {
     }
 
     @Override
-    public boolean removeById(int id) {
-        return evaluateRepository.deleteById(id);
+    public void removeById(int id) {
+        evaluateRepository.deleteById(id);
     }
 
 }

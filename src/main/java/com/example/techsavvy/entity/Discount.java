@@ -1,11 +1,10 @@
 package com.example.techsavvy.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.Date;
+import java.util.*;
 
 @Entity
 @Table(name = "tb_discounts")
@@ -18,9 +17,11 @@ public class Discount {
     @Id
     private String id;
     private String content;
+    private String typeDiscount;
+    private float discountForProduct;
     private Date start;
     private Date end;
-    private float discountForProduct;
+    private boolean enable;
 
 
 }

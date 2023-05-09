@@ -9,6 +9,6 @@ public interface EvaluateService {
     Evaluate getById(int id);
     List<Evaluate> getListEvaluateByProduct(String product_id);
 
-    boolean removeById(int id);
+    void removeById(int id);
 
 }
