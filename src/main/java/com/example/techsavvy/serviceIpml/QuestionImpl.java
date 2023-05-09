@@ -24,8 +24,8 @@ public class QuestionImpl implements QuestionService {
     }
 
     @Override
-    public Question updateQuestion(Question question) {
-        Question questionUpdate = questionRepository.findQuestionById(question.getId());
+    public Question updateQuestion(int id) {
+        Question questionUpdate = questionRepository.findQuestionById(id);
         questionUpdate.setReply(true);
         return questionUpdate;
     }

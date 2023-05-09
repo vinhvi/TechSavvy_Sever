@@ -36,10 +36,14 @@ public class QuestionController {
         }
     }
 
-//    public ResponseEntity<?> updateQuestion();
+    @PostMapping("/updateQuestion/{id}")
+    public ResponseEntity<Question> updateQuestion(@PathVariable("id") int id) {
+        Question updateQuestion = questionService.updateQuestion(id);
+        return ResponseEntity.ok().body(updateQuestion);
+    }
 
     @GetMapping("/getQuestionByReply")
-    public ResponseEntity<?> getQuestionByReply(){
+    public ResponseEntity<?> getQuestionByReply() {
         List<Question> questions = questionService.getListQuestionByReply();
         if (questions.isEmpty()) {
             return ResponseEntity.status(405).body("Chưa có câu hỏi nào!!");

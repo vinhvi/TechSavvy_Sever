@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface QuestionService {
     Question createQuestion(Question newQuestion);
-    Question updateQuestion(Question question);
+    Question updateQuestion(int id);
     List<Question> getQuestionByProduct(String product_id);
 
     Question getById(int id);
