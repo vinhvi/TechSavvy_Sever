@@ -5,6 +5,7 @@ import com.example.techsavvy.entity.CartItems;
 import com.example.techsavvy.service.CartItemService;
 import com.example.techsavvy.service.CartService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,10 +29,10 @@ public class CartController {
     @GetMapping("getCartByCustomerId/{customer_id}")
     public ResponseEntity<?> getByCustomerId(@PathVariable("customer_id") String customer_id) {
         Cart cart = cartService.getByCustomerId(customer_id);
-        if (cart.getCartItems().isEmpty()) {
-            return ResponseEntity.ok().body("Giỏ đồ mày chưa có cái lol j cả dmm!!");
+        if (cart == null) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Lỗi rồi trời ơi !!");
         }
-        return ResponseEntity.ok().body(cartService.getByCustomerId(customer_id));
+        return ResponseEntity.ok().body(cart);
     }
 
     @PostMapping("/createNewCartItems")

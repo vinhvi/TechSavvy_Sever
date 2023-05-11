@@ -4,7 +4,7 @@ import com.example.techsavvy.entity.Cart;
 
 public interface CartService {
     Cart createCart(Cart cart);
-    Cart getByCustomerId(String id);
+    Cart getByCustomerId(String email);
 
 
 }
