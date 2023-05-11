@@ -2,6 +2,7 @@ package com.example.techsavvy.controller;
 
 import com.example.techsavvy.entity.Supplier;
 import com.example.techsavvy.service.SupplierService;
+import jakarta.annotation.security.RolesAllowed;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
