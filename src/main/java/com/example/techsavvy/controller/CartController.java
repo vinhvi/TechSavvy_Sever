@@ -26,7 +26,11 @@ public class CartController {
     }
 
     @GetMapping("getCartByCustomerId/{customer_id}")
-    public ResponseEntity<Cart> getByCustomerId(@PathVariable("customer_id") String customer_id) {
+    public ResponseEntity<?> getByCustomerId(@PathVariable("customer_id") String customer_id) {
+        Cart cart = cartService.getByCustomerId(customer_id);
+        if (cart.getCartItems().isEmpty()) {
+            return ResponseEntity.ok().body("Giỏ đồ mày chưa có cái lol j cả dmm!!");
+        }
         return ResponseEntity.ok().body(cartService.getByCustomerId(customer_id));
     }
 
