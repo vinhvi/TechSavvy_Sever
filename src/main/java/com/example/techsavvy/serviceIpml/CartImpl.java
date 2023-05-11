@@ -19,27 +19,29 @@ import java.util.Date;
 @Slf4j
 public class CartImpl implements CartService {
     private final CartRepository cartRepository;
-    private final CustomerService customerService;
+    private final CustomerRepository customerRepository;
     @Override
     public Cart createCart(Cart cart) {
         return cartRepository.save(cart);
     }
 
     @Override
-    public Cart getByCustomerId(String email) {
+    public Cart getByCustomerEmail(String email) {
         Cart cart = cartRepository.findCartByCustomerId(email);
-        if (cart == null) {
-            Customer customer = customerService.getByEmail(email);
-            if (customer != null) {
-                Date date = new Date();
-                cart.setCustomer(customer);
-                cart.setImportDate(date);
-                return cartRepository.save(cart);
-            } else {
+        if (cart != null) {
+            return cart;
+        } else {
+            Customer customer = customerRepository.findCustomerByEmail(email);
+            if (customer == null) {
                 throw new RuntimeException("Không tìm thấy khách hàng!!");
+            } else {
+                Cart newCart = new Cart();
+                Date date = new Date();
+                newCart.setCustomer(customer);
+                newCart.setImportDate(date);
+                return cartRepository.save(newCart);
             }
         }
-        return cart;
     }
 
 }

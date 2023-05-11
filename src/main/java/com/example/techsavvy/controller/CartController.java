@@ -19,16 +19,16 @@ public class CartController {
 
     @PostMapping("/createNewCart")
     public ResponseEntity<?> createCart(@RequestBody Cart newCart) {
-        Cart check = cartService.getByCustomerId(newCart.getCustomer().getId());
+        Cart check = cartService.getByCustomerEmail(newCart.getCustomer().getId());
         if (check.getCartItems().isEmpty()) {
             return ResponseEntity.ok().body(cartService.createCart(newCart));
         }
         return ResponseEntity.status(409).body("Khách Hàng đã có giỏ hàng !!s");
     }
 
-    @GetMapping("getCartByCustomerId/{customer_id}")
-    public ResponseEntity<?> getByCustomerId(@PathVariable("customer_id") String customer_id) {
-        Cart cart = cartService.getByCustomerId(customer_id);
+    @GetMapping("getCartByCustomer/{email}")
+    public ResponseEntity<?> getByCustomerId(@PathVariable("email") String email) {
+        Cart cart = cartService.getByCustomerEmail(email);
         if (cart == null) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Lỗi rồi trời ơi !!");
         }
